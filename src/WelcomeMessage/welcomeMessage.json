@@ -1,0 +1,8 @@
+{
+  "welcomeMessages": ["Welcome... Tarnished... <name>!", "Bjr <name>!"],
+  "goodbyeMessages": [
+    "<name> Maidenless...😒",
+    "PETASSE! <name>",
+    "Tocard <name>!"
+  ]
+}

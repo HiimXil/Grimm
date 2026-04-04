@@ -1,0 +1,20 @@
+{
+  "mystical_scroll": {
+    "4_star_elem": 0.08,
+    "5_star_elem": 0.005
+  },
+  "All_attributes_scroll": {
+    "4_star_elem": 0.854,
+    "4_star_ld": 0.075,
+    "5_star_elem": 0.067,
+    "5_star_ld": 0.004
+  },
+  "legendary_scroll": {
+    "4_star_elem": 0.935,
+    "5_star_elem": 0.065
+  },
+  "light_dark_scroll": {
+    "4_star_ld": 0.06,
+    "5_star_ld": 0.0035
+  }
+}
