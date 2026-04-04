@@ -1,7 +1,6 @@
 import CommandHandler from "../../interfaces/CommandHandler";
 import { REST, Routes, Client } from "discord.js";
 import dotenv from "dotenv";
-// Importation des commandes
 import summonRate from "../summonRate";
 import { client } from "../../Utils/Client";
 

@@ -7,6 +7,7 @@ dist/
 .env
 
 scripts/
+docker-compose.yml
 
 # Prisma
 prisma/olddev.db
