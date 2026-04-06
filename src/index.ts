@@ -7,6 +7,8 @@ import {
   registerCommands,
   AddNewCommandDeleteOld,
 } from "./Commands/CommandsUtils/addCommand";
+import { roulette } from "./RandomTools/Roulette/roulette";
+
 import { resolve } from "path";
 //env variables
 dotenv.config({ path: resolve(__dirname, "../.env") });
@@ -22,6 +24,9 @@ handleCommand(client);
 
 // Send welcome message on member join and goodbye on member leave
 sendWelcomeMessage(client);
+
+// Roulette command
+roulette(client);
 
 //Connect the bot
 client.login(process.env.DISCORD_TOKEN);
