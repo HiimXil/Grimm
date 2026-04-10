@@ -1,17 +1,14 @@
 import { client } from "./Utils/Client";
+import { resolve } from "path";
 import dotenv from "dotenv";
-import { sendWelcomeMessage } from "./WelcomeMessage/welcome";
+//env variables
+dotenv.config({ path: resolve(__dirname, "../.env") });
 import {
-  addAllCommands,
   handleCommand,
-  registerCommands,
   AddNewCommandDeleteOld,
 } from "./Commands/CommandsUtils/addCommand";
 import { roulette } from "./RandomTools/Roulette/roulette";
-
-import { resolve } from "path";
-//env variables
-dotenv.config({ path: resolve(__dirname, "../.env") });
+import { sendWelcomeMessage } from "./WelcomeMessage/welcome";
 
 // Event: Bot ready
 client.once("clientReady", async () => {

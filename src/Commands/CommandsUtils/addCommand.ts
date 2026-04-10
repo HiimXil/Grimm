@@ -1,10 +1,7 @@
 import CommandHandler from "../../interfaces/CommandHandler";
 import { REST, Routes, Client } from "discord.js";
-import dotenv from "dotenv";
 import summonRate from "../summonRate";
 import { client } from "../../Utils/Client";
-
-dotenv.config();
 
 export const commandHandler = new CommandHandler();
 
