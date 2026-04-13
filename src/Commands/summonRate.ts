@@ -40,7 +40,7 @@ const command: Command = {
         .setDescription("Nombre de tout-attribut")
         .setRequired(false),
     )
-    .addAttachmentOption((option) =>
+    .addIntegerOption((option) =>
       option
         .setName("12y")
         .setDescription("Nombre de Velin des 12 ans")
