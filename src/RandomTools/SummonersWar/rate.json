@@ -16,5 +16,11 @@
   "light_dark_scroll": {
     "4_star_ld": 0.06,
     "5_star_ld": 0.0035
+  },
+  "twelves_year_scroll": {
+    "4_star_elem": 0.06,
+    "4_star_ld": 0.02,
+    "5_star_elem": 0.0045,
+    "5_star_ld": 0.0005
   }
 }

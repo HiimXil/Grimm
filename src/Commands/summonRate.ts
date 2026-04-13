@@ -7,7 +7,10 @@ import {
   CommandInteraction,
 } from "discord.js";
 import type Command from "../interfaces/Command";
-import { calcSummonRate } from "../RandomTools/SummonersWar/summonRate";
+import {
+  calcSummonRate,
+  calcSummonRate12Years,
+} from "../RandomTools/SummonersWar/summonRate";
 
 const command: Command = {
   data: new SlashCommandBuilder()
@@ -36,6 +39,12 @@ const command: Command = {
         .setName("tta")
         .setDescription("Nombre de tout-attribut")
         .setRequired(false),
+    )
+    .addAttachmentOption((option) =>
+      option
+        .setName("12y")
+        .setDescription("Nombre de Velin des 12 ans")
+        .setRequired(false),
     ) as SlashCommandBuilder,
 
   async execute(interaction: CommandInteraction) {
@@ -51,7 +60,8 @@ const command: Command = {
     const vl = interaction.options.getInteger("vl") ?? 0;
     const ld = interaction.options.getInteger("ld") ?? 0;
     const tta = interaction.options.getInteger("tta") ?? 0;
-    const result = calcSummonRate(vm, vl, ld, tta);
+    const twelves = interaction.options.getInteger("12y") ?? 0;
+    const result = calcSummonRate12Years(vm, vl, ld, tta, twelves);
     await interaction.reply({ content: result, ephemeral: false });
   },
 };
