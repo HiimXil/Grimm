@@ -18,6 +18,7 @@ async function getRankedInfo(puuid: string) {
   return entries.response;
 }
 
+//Get Ranked Info for a specific player
 export async function getSoloQueueLP(gameName: string, tagLine: string) {
   const puuid = await getPuuid(gameName, tagLine);
   const entries = await getRankedInfo(puuid);
