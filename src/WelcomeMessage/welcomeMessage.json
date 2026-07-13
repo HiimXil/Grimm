@@ -3,12 +3,14 @@
     "Welcome... Tarnished... <name>!",
     "Bjr <name>!",
     "Oh non pas lui ... <name>",
-    "FAHHHHHH <name>!"
+    "FAHHHHHH <name>!",
+    "Yo <name>! Bienvenue sur le serveur !"
   ],
   "goodbyeMessages": [
     "<name> Maidenless...😒",
     "PETASSE! <name>",
     "Tocard <name>!",
-    "Bon la pick-me est parti, qui s'en occupe ? <name>"
+    "Bon la pick-me est parti, qui s'en occupe ? <name>",
+    "Au revoir <name>!"
   ]
 }
