@@ -24,7 +24,7 @@ export async function handleNonOfficialCommand(
     const messageContent = await Promise.all([lirio, baguette, jerome]).then(
       (values) => {
         return values
-          .map((data, index) => {
+          .map((data: any, index: number) => {
             if (data) {
               const name =
                 index === 0
