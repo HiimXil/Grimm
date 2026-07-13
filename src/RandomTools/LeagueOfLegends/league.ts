@@ -14,7 +14,6 @@ async function getPuuid(gameName: string, tagLine: string) {
 
 async function getRankedInfo(puuid: string) {
   const entries = await lolApi.League.byPUUID(puuid, Constants.Regions.EU_WEST);
-  console.log(entries.response);
   return entries.response;
 }
 

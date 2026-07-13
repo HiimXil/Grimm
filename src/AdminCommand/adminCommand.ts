@@ -1,5 +1,5 @@
 import { Message, OmitPartialGroupDMChannel, MessageFlags } from "discord.js";
-import { getSoloQueueLP } from "../RandomTools/LeagueOfLegends/League";
+import { getSoloQueueLP } from "../RandomTools/LeagueOfLegends/league";
 
 export async function handleNonOfficialCommand(
   message: OmitPartialGroupDMChannel<Message<boolean>>,
