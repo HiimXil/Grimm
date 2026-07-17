@@ -1,5 +1,5 @@
 import { Client } from "discord.js";
-import messages from "./welcomeMessage.json";
+import messages from "../../data/welcomeMessage.json";
 
 const welcomeMessages: string[] = messages.welcomeMessages;
 const goodbyeMessages: string[] = messages.goodbyeMessages;
@@ -14,6 +14,7 @@ export function sendWelcomeMessage(client: Client) {
       channel.send(
         randomMessage.replace("<name>", "<@" + member.user.id + ">"),
       );
+      console.log(`✅ Sent welcome message for new member: ${member.user.tag}`);
     }
   });
   client.on("guildMemberRemove", (member) => {
@@ -25,6 +26,7 @@ export function sendWelcomeMessage(client: Client) {
       channel.send(
         randomMessage.replace("<name>", "<@" + member.user.id + ">"),
       );
+      console.log(`✅ Sent goodbye message for member: ${member.user.tag}`);
     }
   });
 }

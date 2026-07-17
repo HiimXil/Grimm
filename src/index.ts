@@ -10,11 +10,16 @@ import {
 import { roulette } from "./RandomTools/Roulette/roulette";
 import { sendWelcomeMessage } from "./WelcomeMessage/welcome";
 import { handleNonOfficialCommand } from "./AdminCommand/adminCommand";
+import { EpicFreeGamesSendMessage } from "./EpicGames/epicFreeGames";
 
 // Event: Bot ready
 client.once("clientReady", async () => {
   console.log(`✅ Bot connecté en tant que ${client.user?.tag}`);
   await AddNewCommandDeleteOld();
+
+  // Fetch free games from Epic Games Store
+  console.log("✅ Fetching free games from Epic Games Store...");
+  await EpicFreeGamesSendMessage();
 });
 
 // Use the non-official command handler for messages
