@@ -17,9 +17,14 @@ client.once("clientReady", async () => {
   console.log(`✅ Bot connecté en tant que ${client.user?.tag}`);
   await AddNewCommandDeleteOld();
 
-  // Fetch free games from Epic Games Store
-  console.log("✅ Fetching free games from Epic Games Store...");
-  await EpicFreeGamesSendMessage();
+  // Fetch free games from Epic Games Store every 6 hours
+  setInterval(
+    async () => {
+      console.log("✅ Fetching free games from Epic Games Store...");
+      await EpicFreeGamesSendMessage();
+    },
+    6 * 60 * 60 * 1000,
+  );
 });
 
 // Use the non-official command handler for messages
