@@ -1,5 +1,6 @@
 import { Message, OmitPartialGroupDMChannel, MessageFlags } from "discord.js";
 import { getSoloQueueLP } from "../RandomTools/LeagueOfLegends/league";
+import { EpicFreeGamesSendMessage } from "../EpicGames/epicFreeGames";
 
 export async function handleNonOfficialCommand(
   message: OmitPartialGroupDMChannel<Message<boolean>>,
@@ -13,6 +14,15 @@ export async function handleNonOfficialCommand(
       if (messagesToDeleteCount > 0 && "bulkDelete" in channel) {
         await channel.bulkDelete(messages);
       }
+      return;
+    }
+  }
+
+  if (message.author.id === process.env.ADMIN_USER_ID) {
+    if (message.content === "!freegames") {
+      // trigger the EpicFreeGamesSendMessage function
+      console.log("✅ Admin command received: !freegames");
+      await EpicFreeGamesSendMessage();
       return;
     }
   }

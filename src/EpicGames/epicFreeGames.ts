@@ -62,6 +62,8 @@ export async function checkEpicFreeGames(): Promise<OfferGame[]> {
 
   if (newGames.length > 0) {
     await saveSeenGames(seenGames);
+  } else {
+    console.log("No new free games found.");
   }
 
   return newGames;
