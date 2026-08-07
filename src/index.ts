@@ -16,15 +16,20 @@ import { EpicFreeGamesSendMessage } from "./EpicGames/epicFreeGames";
 client.once("clientReady", async () => {
   console.log(`✅ Bot connecté en tant que ${client.user?.tag}`);
   await AddNewCommandDeleteOld();
-
-  // Fetch free games from Epic Games Store every 6 hours
-  setInterval(
-    async () => {
-      console.log("✅ Fetching free games from Epic Games Store...");
-      await EpicFreeGamesSendMessage();
-    },
-    6 * 60 * 60 * 1000,
-  );
+  if (process.env.NODE_ENV === "development") {
+    console.log("✅ Development mode");
+    console.log("✅ Fetching free games from Epic Games Store...");
+    await EpicFreeGamesSendMessage();
+  } else {
+    // Fetch free games from Epic Games Store every 6 hours
+    setInterval(
+      async () => {
+        console.log("✅ Fetching free games from Epic Games Store...");
+        await EpicFreeGamesSendMessage();
+      },
+      6 * 60 * 60 * 1000,
+    );
+  }
 });
 
 // Use the non-official command handler for messages

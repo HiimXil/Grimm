@@ -3,6 +3,10 @@ import path from "path";
 import { EpicFreeGames, OfferGame } from "epic-free-games";
 import { client } from "../Utils/Client";
 import { EmbedBuilder } from "discord.js";
+import {
+  getEpicGamesChannelId,
+  getEpicGamesRoleId,
+} from "../Settings/settings";
 
 const epicFreeGames = new EpicFreeGames({
   country: "FR",
@@ -69,7 +73,11 @@ export async function EpicFreeGamesSendMessage() {
 
   for (const game of games) {
     const title = game.title;
-    const urlSlug = game.urlSlug;
+    const pageSlug =
+      game.offerMappings[0]?.pageSlug ||
+      game.offerMappings[1]?.pageSlug ||
+      game.offerMappings[2]?.pageSlug ||
+      "unknown";
     const image = game.keyImages.find(
       (img) => img.type === "OfferImageWide",
     )?.url;
@@ -85,7 +93,7 @@ export async function EpicFreeGamesSendMessage() {
     const embed = new EmbedBuilder()
       .setTitle(title)
       .setDescription(
-        `**Open in :**\n- [Epicgames.com](https://store.epicgames.com/fr/p/${urlSlug}) | [Epic Launcher](https://store.epicgames.com/launch)\n\n**~~${(
+        `**Open in :**\n- [Epicgames.com](https://store.epicgames.com/fr/p/${pageSlug}) | [Epic Launcher](https://store.epicgames.com/launch)\n\n**~~${(
           originalPrice / 100
         ).toFixed(2)}€~~ -> ${price / 100}€**\n\n🕒 End <t:${Math.floor(
           endDate.getTime() / 1000,
@@ -99,10 +107,10 @@ export async function EpicFreeGamesSendMessage() {
     let channelId: string | undefined;
     if (process.env.NODE_ENV == "development") {
       guildId = process.env.DEV_GUILD_ID;
-      channelId = process.env.DEV_CHANNEL_ID;
+      channelId = await getEpicGamesChannelId();
     } else {
       guildId = process.env.GUILD_ID;
-      channelId = process.env.EPIC_CHANNEL_ID;
+      channelId = await getEpicGamesChannelId();
     }
 
     if (!guildId || !channelId) {
@@ -124,7 +132,7 @@ export async function EpicFreeGamesSendMessage() {
     }
 
     await channel.send({
-      content: `<@&${guild.roles.cache.find((role) => role.name === "Rats")?.id}>`,
+      content: `<@&${await getEpicGamesRoleId()}>`,
       embeds: [embed],
     });
     console.log(`✅ Sent message for free game: ${title}`);

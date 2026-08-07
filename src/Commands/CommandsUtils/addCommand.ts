@@ -1,7 +1,9 @@
 import CommandHandler from "../../interfaces/CommandHandler";
 import { REST, Routes, Client } from "discord.js";
 import summonRate from "../summonRate";
+import settings from "../settings";
 import { client } from "../../Utils/Client";
+import { handleModalSubmit } from "../../Settings/settings";
 
 export const commandHandler = new CommandHandler();
 
@@ -9,6 +11,7 @@ export const commandHandler = new CommandHandler();
 export function addAllCommands() {
   //add the current bot commands here
   commandHandler.addCommand(summonRate);
+  commandHandler.addCommand(settings);
 }
 
 export async function AddNewCommandDeleteOld() {
@@ -43,6 +46,19 @@ export function registerCommands() {
 
 export function handleCommand(client: Client) {
   client.on("interactionCreate", async (interaction) => {
+    if (interaction.isModalSubmit()) {
+      try {
+        await handleModalSubmit(interaction);
+      } catch (error) {
+        console.error("Erreur lors de la soumission du modal : ", error);
+        await interaction.reply({
+          content: "❌ Une erreur est survenue lors de l'enregistrement.",
+          ephemeral: true,
+        });
+      }
+      return;
+    }
+
     if (interaction.isChatInputCommand()) {
       const command = commandHandler.getCommand(interaction.commandName);
       if (!command) {
